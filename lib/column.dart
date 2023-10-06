@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       ),
 
       //O parametro Children diz que o os filhos da classe ficam juntos, no caso do colum um ao lado do outro
+        //O Column significa Coluna, serve para colocar os componentes um do lado do outro (vertical).
+        //O primeiro componente sempre ficará mais acima que os demais.
       home: Column(
 
         //eixo principal de alinhamento
