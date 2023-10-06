@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      //Stack - Funciona como uma pilha, onde podemos empilhar coisas com o 'children' (bem literal, uma em cima da outra, não é possível colocar 2 containers um do lado do outro por exemplo)
+      //Stack - Funciona como uma pilha, onde podemos empilhar coisas com o 'children' (bem literal, uma em cima da outra (dentro), não é possível colocar 2 containers um do lado do outro por exemplo)
       home: Stack(
         alignment: AlignmentDirectional.center,
         children: [
