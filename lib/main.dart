@@ -17,16 +17,38 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      //Stack - Funciona como uma pilha, onde podemos empilhar (bem literal, uma em cima da outra, não é possível colocar 2 containers um do lado do outro por exemplo) coisas com o 'children'
-      home: Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            //Container basicamente é uma forma (se não definir o tamanho, ele toma a tela inteira) que vc define cor, tamanho e outros parametros.
-            Container(color: Colors.red, width: 100, height: 100,),
-            Container(color: Colors.blue, width: 50, height: 50,),
+      home: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Container(color: Colors.red, width: 100, height: 100,),
+              Container(color: Colors.blue, width: 50, height: 50,),
+            ],
 
-          ],
-      ),
+          ),
+          Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Container(color: Colors.blue, width: 100, height: 100,),
+              Container(color: Colors.red, width: 50, height: 50,),
+            ],
+
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment:  CrossAxisAlignment.center,
+            children: [
+              Container(color:  Colors.cyan, height: 50, width: 50),
+              Container(color:  Colors.pinkAccent, height: 50, width: 50,),
+              Container(color: Colors.purple, height: 50, width: 50,),
+            ],
+          )
+
+        ],
+      ) ,
     );
   }
 }
