@@ -19,8 +19,15 @@ class MyApp extends StatelessWidget {
 
         //O Row significa linha, serve para colocar os componentes um do lado do outro (horizontal).
         //O primeiro componente sempre ficará mais a esquerda que os demais.
-        home: Row(
-            children: [
+        home: Row (
+
+          //Verifica o alinhamento na horizontal quando é o Row
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+          //Verifica o alinhamento na vertical quando é o Row
+          crossAxisAlignment: CrossAxisAlignment.center,
+
+          children: [
               Container(color: Colors.red, width: 100, height: 100,),
               Container(color: Colors.blue, width: 50, height: 50,),
             ],
