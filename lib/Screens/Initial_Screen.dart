@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:meu_primeiro_projeto/Task.dart';
+import 'package:meu_primeiro_projeto/components/Task.dart';
 
 //Digitando stl e apertando 'tab' toda estrutura abaixo é criada:
 //O Stateless cria um widget proprio, que podemos chamar sempre que precisarmos, ele é estático, não muda na tela.
