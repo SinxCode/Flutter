@@ -2,6 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_projeto/Task.dart';
 
+//Digitando stl e apertando 'tab' toda estrutura abaixo é criada:
+//O Stateless cria um widget proprio, que podemos chamar sempre que precisarmos, ele é estático, não muda na tela.
+//O Statefull cria um widget proprio, que podemos chamar sempre que necessário, mas ele não é estático, ele permite mudanças na tela.
+//É útil para quando precisamos repetir o mesmo layout varias vezes.
+//Criando classe de tarefas
+
+
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
 
