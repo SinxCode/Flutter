@@ -50,7 +50,7 @@ class _TaskState extends State<Task> {
                       //Não é possível arredondar as bordas das imagens que são filhas de um container, portanto usamos o ClippRRect para isso.
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(4),
-                        child: Image.network(
+                        child: Image.asset(
                           widget.foto,
                           fit: BoxFit.cover,
                         ),
