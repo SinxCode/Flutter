@@ -24,7 +24,7 @@ class _InitialScreenState extends State<InitialScreen> {
       appBar: AppBar(
         leading: Container(),
         //leanding coloca um espaço a esquerda, neste caso utilziamos um espaço de container
-        title: Text('Tarefas',
+        title: const Text('Tarefas',
             style: TextStyle(color: Colors.white, fontSize: 24)),
         backgroundColor: Colors.lightBlueAccent,
       ),
@@ -32,31 +32,33 @@ class _InitialScreenState extends State<InitialScreen> {
       //Um ListView diferente da coluna permite scrollar a imagem
       body: AnimatedOpacity(
         opacity: opacidade ? 1 : 0,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
         child: ListView(
-          children: [
+          children: const [
             Task(
                 'Aprender Flutter',
-                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                'assets/images/flutter.png',
                 3),
             Task(
                 'Andar de Bike',
-                'https://tswbike.com/wp-content/uploads/2020/09/108034687_626160478000800_2490880540739582681_n-e1600200953343.jpg',
+                'assets/images/bike.jpg',
                 2),
             Task(
                 'Meditar',
-                'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg',
+                'assets/images/meditar.jpeg',
                 5),
             Task(
                 'Ler',
-                'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg',
+                'assets/images/livro.jpg',
                 4),
             Task(
                 'Jogar',
-                'https://s2-techtudo.glbimg.com/VazbHq7he8hqTb19xbgCZP3Wejs=/0x0:1200x800/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2023/R/q/Vm9IDWRyijHPCBh2iAqg/controle-de-xbox.png',
-                1)
+                'assets/images/jogar.webp',
+                1),
+            SizedBox(height: 80,)//Serve para criarmos espaços
           ],
         ),
+
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
