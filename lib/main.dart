@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_projeto/Screens/Initial_Screen.dart';
 import 'package:meu_primeiro_projeto/Screens/form_screen.dart';
+import 'package:meu_primeiro_projeto/data/task_inherited.dart';
 
 //Função principal de um projeto Flutter
 void main() {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const InitialScreen(),
+      //colocando o taskinherited como pai de todo mundo
+      home: TaskInherited(child: const InitialScreen()),
     );
   }
 }
