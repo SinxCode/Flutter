@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_projeto/Screens/form_screen.dart';
 import 'package:meu_primeiro_projeto/components/Task.dart';
+import 'package:meu_primeiro_projeto/data/task_inherited.dart';
 
 //Digitando stl e apertando 'tab' toda estrutura abaixo é criada:
 //O Stateless cria um widget proprio, que podemos chamar sempre que precisarmos, ele é estático, não muda na tela.
@@ -31,16 +32,9 @@ class _InitialScreenState extends State<InitialScreen> {
 
       //Um ListView diferente da coluna permite scrollar a imagem
       body: ListView(
-        children: const [
-          Task('Aprender Flutter', 'assets/images/flutter.png', 3),
-          Task('Andar de Bike', 'assets/images/bike.jpg', 2),
-          Task('Meditar', 'assets/images/meditar.jpeg', 5),
-          Task('Ler', 'assets/images/livro.jpg', 4),
-          Task('Jogar', 'assets/images/jogar.webp', 1),
-          SizedBox(
-            height: 80,
-          ) //Serve para criarmos espaços
-        ],
+        //Chamando a nossa lista principal (que poderá ser alterada)
+        children: TaskInherited.of(context).taskList,
+        padding: EdgeInsets.only(top: 8, bottom: 70),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -48,7 +42,8 @@ class _InitialScreenState extends State<InitialScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FormScreen()
+              //chamando esse builder de contextNew para não dar problema
+              builder: (contextNew) => FormScreen(taskContext: context,)
             ),
           );
         },
