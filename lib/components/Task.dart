@@ -6,15 +6,23 @@ class Task extends StatefulWidget {
   final String foto;
   final int dificuldade;
 
-  const Task(this.nome, this.foto, this.dificuldade, {super.key});
-
+   Task(this.nome, this.foto, this.dificuldade, {super.key});
+  int nivel = 0;
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
   //Sempre colocar variaveis antes do override para caso mudarmos o widget elas funcionarem.
-  int nivel = 0;
+
+
+  //criando método para verificar se a imagem é um asset ou network
+  bool assetOrNetwork() {
+    if (widget.foto.contains('http')) {
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +57,16 @@ class _TaskState extends State<Task> {
                       height: 100,
                       //Não é possível arredondar as bordas das imagens que são filhas de um container, portanto usamos o ClippRRect para isso.
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          widget.foto,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(4),
+                          child: assetOrNetwork()
+                              ? Image.asset(
+                                  widget.foto,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  widget.foto,
+                                  fit: BoxFit.cover,
+                                )),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -69,7 +81,9 @@ class _TaskState extends State<Task> {
                               //estabelecido (neste caso pelo container de 200). Neste caso a elpises seria reticencias
                               overflow: TextOverflow.ellipsis,
                             )),
-                        Difficulty(dificultyLevel: widget.dificuldade,),
+                        Difficulty(
+                          dificultyLevel: widget.dificuldade,
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -78,9 +92,9 @@ class _TaskState extends State<Task> {
                       child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              nivel++;
+                              widget.nivel++;
                             });
-                            print(nivel);
+                            print(widget.nivel);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -111,13 +125,13 @@ class _TaskState extends State<Task> {
                         backgroundColor: Colors.black12,
                         color: Colors.white,
                         value: (widget.dificuldade > 0)
-                            ? (nivel / widget.dificuldade) / 10
+                            ? (widget.nivel / widget.dificuldade) / 10
                             : 1,
                       ),
                       width: 200,
                     ),
                     Text(
-                      'Nivel $nivel',
+                      'Nivel ${widget.nivel}',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
