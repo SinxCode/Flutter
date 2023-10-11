@@ -19,7 +19,37 @@ class TaskDao {
   static const String _difficulty = 'difficulty';
   static const String _image = 'image';
 
-  save(Task tarefa) async {}
+  //Método para salvar e atualizar as tarefas
+  save(Task tarefa) async {
+    print('Iniciando o save');
+    final Database bancoDeDados = await getDatabase();
+    var itemExists = await find(tarefa.nome);
+    Map<String, dynamic> taskMap = toMap(tarefa);
+
+    if (itemExists.isEmpty) {
+      print('A tarefa não existia');
+      return await bancoDeDados.insert(_tablename, taskMap);
+    } else {
+      print('A tarefa já existe');
+      return await bancoDeDados.update(
+        _tablename,
+        taskMap,
+        where: '$_name= ? ',
+        whereArgs: [tarefa.nome],
+      );
+    }
+  }
+
+  //Criando método para transformar uma tarefa em um mapa para poder utilizar o save e update
+  Map<String, dynamic> toMap(Task tarefa) {
+    print('Convertendo tarefa em map:');
+    final Map<String, dynamic> mapaDeTarefas = Map();
+    mapaDeTarefas[_name] = tarefa.nome;
+    mapaDeTarefas[_difficulty] = tarefa.dificuldade;
+    mapaDeTarefas[_image] = tarefa.foto;
+    print('Mapa de Tarefas: $mapaDeTarefas');
+    return mapaDeTarefas;
+  }
 
   //Método para buscar todas as tarefas
   Future<List<Task>> findAll() async {
@@ -56,5 +86,14 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String nomeDaTarefa) async {}
+    //Crianto método para deletar uma tarefa
+  delete(String nomeDaTarefa) async {
+    print('Deletando uma função');
+    final Database bancoDeDados = await getDatabase();
+    return bancoDeDados.delete(
+      _tablename,
+      where: '$_name = ?',
+      whereArgs: [nomeDaTarefa],
+    );
+  }
 }

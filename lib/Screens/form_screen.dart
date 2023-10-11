@@ -1,6 +1,8 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:meu_primeiro_projeto/components/Task.dart';
+import 'package:meu_primeiro_projeto/data/task_dao.dart';
 import 'package:meu_primeiro_projeto/data/task_inherited.dart';
 
 class FormScreen extends StatefulWidget {
@@ -18,15 +20,16 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController difficultyController = TextEditingController();
   TextEditingController imageController = TextEditingController();
   final _formKey = GlobalKey<FormState>(); //chave para validações de formulario
-  bool valueValidator(String? value){
-    if(value != null && value.isEmpty){
+  bool valueValidator(String? value) {
+    if (value != null && value.isEmpty) {
       return true;
     }
     return false;
   }
-  bool difficultyValidator(String? value){
-    if(value != null && value.isEmpty){
-      if(int.parse(value) > 5 || int.parse(value) <1){
+
+  bool difficultyValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      if (int.parse(value) > 5 || int.parse(value) < 1) {
         return true;
       }
     }
@@ -150,13 +153,11 @@ class _FormScreenState extends State<FormScreen> {
                         // print(nameController.text);
                         // print(int.parse(difficultyController.text));
                         // print(imageController.text);
-
                         //adicionando o método de nova tarefa
-                        TaskInherited.of(widget.taskContext).newTask(
+                        TaskDao().save(Task(
                             nameController.text,
                             imageController.text,
-                            int.parse(difficultyController.text));
-
+                            int.parse(difficultyController.text)));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Criando nova tarefa'),
